@@ -12,6 +12,18 @@
         android:theme="@style/Theme.AndroidSmartDevice"
         tools:targetApi="31">
         <activity
+            android:name=".cellAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".CellCustom"
+            android:exported="false" />
+        <activity
+            android:name=".ScanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
