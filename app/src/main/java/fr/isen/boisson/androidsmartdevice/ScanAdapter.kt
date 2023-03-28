@@ -2,11 +2,7 @@ package fr.isen.boisson.androidsmartdevice
 
 import android.bluetooth.BluetoothDevice
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.boisson.androidsmartdevice.databinding.ScanCellBinding
 
@@ -21,8 +17,6 @@ class ScanAdapter(var devices: ArrayList<BluetoothDevice>, var onDeviceClickList
     class ViewHolder(binding: ScanCellBinding) : RecyclerView.ViewHolder(binding.root) {
         val deviceName = binding.deviceName
     }
-
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.deviceName.text = devices[position].address
@@ -48,9 +42,3 @@ class ScanAdapter(var devices: ArrayList<BluetoothDevice>, var onDeviceClickList
         }
     }
 }
-
-
-/*override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = LayoutInflater.from(parent.context).inflate(R.layout.activity_cell_adapter,parent,false)
-        return ViewHolder(binding)
-    }*/

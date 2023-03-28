@@ -131,18 +131,27 @@ class ScanActivity : AppCompatActivity() {
         }
 
         binding.scanList.layoutManager = LinearLayoutManager(this)
+
         adapter = ScanAdapter(arrayListOf()) {
             val intent = Intent(this, DeviceActivity::class.java)
             intent.putExtra("device", it)
             startActivity(intent)
         }
+
         binding.scanList.adapter = adapter
+
+        /*binding.scanList.apply {
+            layoutManager = LinearLayoutManager(this@ScanActivity)
+            adapter = adapter
+        }*/
     }
 
     private fun allPermissionsGranted(): Boolean {
         val allPermissions = getAllPermissions()
         return allPermissions.all {
-            when (it) {
+
+            ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+        /*when (it) {
                 Manifest.permission.BLUETOOTH_ADMIN,
                 Manifest.permission.BLUETOOTH,
                 Manifest.permission.BLUETOOTH_CONNECT,
@@ -154,7 +163,7 @@ class ScanActivity : AppCompatActivity() {
                 }
 
                 else -> false
-            }
+            }*/
         }
     }
 
@@ -187,7 +196,7 @@ class ScanActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val SCAN_PERIOD: Long = 10000
+        private val SCAN_PERIOD: Long = 100000000000000
     }
 
 }
