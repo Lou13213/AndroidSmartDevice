@@ -5,10 +5,15 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCallback
 import android.bluetooth.BluetoothProfile
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.isVisible
 import fr.isen.boisson.androidsmartdevice.databinding.ActivityDeviceBinding
+import java.util.*
+
+
 @SuppressLint("MissingPermission")
 class DeviceActivity : AppCompatActivity() {
 
@@ -33,9 +38,13 @@ class DeviceActivity : AppCompatActivity() {
 
     private val bluetoothGattCallback = object : BluetoothGattCallback() {
         override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
-            if (newState == BluetoothProfile.STATE_CONNECTED) {
+            if (newState == BluetoothProfile.STATE_CONNECTING) {
                 runOnUiThread {
                     displayContentConnected()
+                }
+            } else {
+                runOnUiThread {
+                    displayLED()
                 }
             }
         }
@@ -44,6 +53,42 @@ class DeviceActivity : AppCompatActivity() {
     private fun displayContentConnected() {
         binding.detailLoaderTitle.text = getString(R.string.device_led_text)
         binding.detailLoader.isVisible = true
+        binding.led1.isVisible = false
+        binding.led2.isVisible = false
+        binding.led3.isVisible = false
+    }
+
+    private fun displayLED() {
+        binding.detailLoaderTitle.text = getString(R.string.device_led_text_connected)
+        binding.detailLoader.isVisible = false
         binding.led1.isVisible = true
+        binding.led2.isVisible = true
+        binding.led3.isVisible = true
+    }
+
+    private fun clickLED() {
+        binding.led1.setOnClickListener {
+            turnOnLED1()
+        }
+
+        binding.led3.setOnClickListener {
+            turnOnLED2()
+        }
+
+        binding.led3.setOnClickListener {
+            turnOnLED3()
+        }
+    }
+
+    private fun turnOnLED1() {
+        TODO("Not yet implemented")
+    }
+
+    private fun turnOnLED2() {
+        TODO("Not yet implemented")
+    }
+
+    private fun turnOnLED3() {
+        TODO("Not yet implemented")
     }
 }
