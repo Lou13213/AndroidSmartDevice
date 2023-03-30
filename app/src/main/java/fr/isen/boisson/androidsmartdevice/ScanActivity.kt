@@ -153,19 +153,6 @@ class ScanActivity : AppCompatActivity() {
         return allPermissions.all {
 
             ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
-        /*when (it) {
-                Manifest.permission.BLUETOOTH_ADMIN,
-                Manifest.permission.BLUETOOTH,
-                Manifest.permission.BLUETOOTH_CONNECT,
-                Manifest.permission.BLUETOOTH_SCAN,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION -> {
-                    ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
-                }
-
-                else -> false
-            }*/
         }
     }
 

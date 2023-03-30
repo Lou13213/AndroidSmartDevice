@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCallback
 import android.bluetooth.BluetoothProfile
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +16,9 @@ import java.util.*
 @SuppressLint("MissingPermission")
 class DeviceActivity : AppCompatActivity() {
 
+    private var LED1ON = false
+    private var LED2ON = false
+    private var LED3ON = false
     private lateinit var binding: ActivityDeviceBinding
     private var bluetoothGatt: BluetoothGatt? = null
 
@@ -56,6 +58,7 @@ class DeviceActivity : AppCompatActivity() {
         binding.led1.isVisible = false
         binding.led2.isVisible = false
         binding.led3.isVisible = false
+        binding.nbIncrementation.isVisible = false
     }
 
     private fun displayLED() {
@@ -64,31 +67,47 @@ class DeviceActivity : AppCompatActivity() {
         binding.led1.isVisible = true
         binding.led2.isVisible = true
         binding.led3.isVisible = true
+        binding.nbIncrementation.isVisible = true
+        clickLED()
     }
 
     private fun clickLED() {
         binding.led1.setOnClickListener {
-            turnOnLED1()
+            LED1ON = !LED1ON
+            Log.d("LED1",LED1ON.toString())
+            turnOnLED(1)
+        }
+
+        binding.led2.setOnClickListener {
+            LED2ON = !LED2ON
+            turnOnLED(2)
         }
 
         binding.led3.setOnClickListener {
-            turnOnLED2()
-        }
-
-        binding.led3.setOnClickListener {
-            turnOnLED3()
+            LED3ON = !LED3ON
+            turnOnLED(3)
         }
     }
 
-    private fun turnOnLED1() {
-        TODO("Not yet implemented")
-    }
+    private fun turnOnLED(ledNumber: Int) {
+        val imageView = when (ledNumber) {
+            1 -> binding.led1
+            2 -> binding.led2
+            3 -> binding.led3
+            else -> return
+        }
 
-    private fun turnOnLED2() {
-        TODO("Not yet implemented")
-    }
+        val imageResource = if (when (ledNumber) {
+                1 -> LED1ON
+                2 -> LED2ON
+                3 -> LED3ON
+                else -> false
+            }) {
+            R.drawable.ledon
+        } else {
+            R.drawable.ledoff
+        }
 
-    private fun turnOnLED3() {
-        TODO("Not yet implemented")
+        imageView.setImageResource(imageResource)
     }
 }

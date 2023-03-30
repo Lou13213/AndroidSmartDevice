@@ -8,48 +8,75 @@
     tools:context=".DeviceActivity">
 
     <ImageView
-        android:id="@+id/led2"
-        android:layout_width="70dp"
-        android:layout_height="82dp"
+        android:id="@+id/led1"
+        android:layout_width="80dp"
+        android:layout_height="102dp"
+        android:layout_marginEnd="190dp"
+        android:layout_marginBottom="170dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.352"
-        app:srcCompat="@drawable/led2" />
+        app:srcCompat="@drawable/ledoff" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="428dp"
+        android:layout_height="58dp"
+        android:background="#D3FEE500"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:subtitleTextColor="#2EBDEE" />
+
+    <ImageView
+        android:id="@+id/led2"
+        android:layout_width="82dp"
+        android:layout_height="105dp"
+        android:layout_marginBottom="170dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ledoff" />
 
     <ImageView
         android:id="@+id/led3"
-        android:layout_width="70dp"
-        android:layout_height="82dp"
+        android:layout_width="84dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="190dp"
+        android:layout_marginBottom="170dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.352"
-        app:srcCompat="@drawable/led2" />
+        app:srcCompat="@drawable/ledoff" />
 
     <TextView
         android:id="@+id/detailLoaderTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="222dp"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="Chargement en cours"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/detailLoader"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76" />
+        app:layout_constraintVertical_bias="0.751" />
 
     <ProgressBar
         android:id="@+id/detailLoader"
@@ -58,22 +85,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="364dp"
         android:layout_marginBottom="319dp"
+        android:foregroundTint="#D3FEE500"
+        android:indeterminateTint="#D3FEE500"
+        android:progressTint="#D3FEE500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/led1"
-        android:layout_width="70dp"
-        android:layout_height="82dp"
-        android:visibility="gone"
+    <TextView
+        android:id="@+id/nbIncrementation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="45dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Nombre d'incrémentations : "
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.352"
-        app:srcCompat="@drawable/led2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
