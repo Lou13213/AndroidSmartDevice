@@ -1,12 +1,13 @@
 package fr.isen.boisson.androidsmartdevice
 
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.le.ScanResult
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.boisson.androidsmartdevice.databinding.ScanCellBinding
 
-class ScanAdapter(var devices: ArrayList<BluetoothDevice>, var onDeviceClickListener: (BluetoothDevice) -> Unit) : RecyclerView.Adapter<ScanAdapter.ViewHolder>() {
+class ScanAdapter(var devices: ArrayList<ScanResult>, var onDeviceClickListener: (BluetoothDevice) -> Unit) : RecyclerView.Adapter<ScanAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -16,12 +17,15 @@ class ScanAdapter(var devices: ArrayList<BluetoothDevice>, var onDeviceClickList
 
     class ViewHolder(binding: ScanCellBinding) : RecyclerView.ViewHolder(binding.root) {
         val deviceName = binding.deviceName
+        val rssi = binding.RSSI
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.deviceName.text = devices[position].address
+        holder.deviceName.text = devices[position].device.address
+        holder.rssi.text = devices[position].rssi.toString()
+
         holder.itemView.setOnClickListener {
-            onDeviceClickListener(devices[position])
+            onDeviceClickListener(devices[position].device)
         }
     }
 
@@ -29,16 +33,16 @@ class ScanAdapter(var devices: ArrayList<BluetoothDevice>, var onDeviceClickList
         return devices.size
     }
 
-    fun addDevice(device: BluetoothDevice) {
+    fun addDevice(result: ScanResult) {
         var shouldAddDevice = true
         devices.forEachIndexed { index, bluetoothDevice ->
-            if (bluetoothDevice.address == device.address) {
-                devices[index] = device
+            if (bluetoothDevice.device.address == result.device.address) {
+                devices[index] = result
                 shouldAddDevice = false
             }
         }
-        if(shouldAddDevice) {
-            devices.add(device)
+        if (shouldAddDevice) {
+            devices.add(result)
         }
     }
 }

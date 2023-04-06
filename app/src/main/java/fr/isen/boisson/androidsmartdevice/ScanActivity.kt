@@ -118,7 +118,7 @@ class ScanActivity : AppCompatActivity() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
             super.onScanResult(callbackType, result)
             Log.d("Scan", "result : $result")
-            adapter.addDevice(result.device)
+            adapter.addDevice(result)
             adapter.notifyDataSetChanged()
         }
     }
