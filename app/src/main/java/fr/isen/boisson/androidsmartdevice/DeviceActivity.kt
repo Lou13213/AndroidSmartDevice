@@ -14,7 +14,6 @@ import fr.isen.boisson.androidsmartdevice.databinding.ActivityDeviceBinding
 import java.time.chrono.JapaneseEra.values
 import java.util.*
 
-
 @SuppressLint("MissingPermission")
 class DeviceActivity : AppCompatActivity() {
 
