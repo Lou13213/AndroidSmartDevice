@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.view.isVisible
 import fr.isen.boisson.androidsmartdevice.databinding.ActivityDeviceBinding
+import java.time.chrono.JapaneseEra.values
 import java.util.*
 
 
@@ -83,40 +84,59 @@ class DeviceActivity : AppCompatActivity() {
     }
 
     private fun clickLED() {
+
+        val service = bluetoothGatt?.getService(serviceUUID)
+        val characteristicLedUUID = service?.getCharacteristic(characteristicLedUUID)
+
         binding.led1.setOnClickListener {
             updateCount()
             LED1ON = !LED1ON
             Log.d("LED1",LED1ON.toString())
             turnOnLED(1)
-            val characteristic = bluetoothGatt?.getService(serviceUUID)?.getCharacteristic(characteristicLedUUID)
-            if(LED1ON)
+
+            if(LED1ON){
                 Toast.makeText(this, "LED 1 activée", Toast.LENGTH_LONG).show()
-            else
+                characteristicLedUUID?.value=(byteArrayOf(0x01))
+                bluetoothGatt?.writeCharacteristic(characteristicLedUUID)}
+            else{
                 Toast.makeText(this, "LED 1 éteinte", Toast.LENGTH_LONG).show()
+                characteristicLedUUID?.value=(byteArrayOf(0x00))
+                bluetoothGatt?.writeCharacteristic(characteristicLedUUID)
+            }
         }
 
         binding.led2.setOnClickListener {
             updateCount()
             LED2ON = !LED2ON
             turnOnLED(2)
-            if(LED2ON)
+            if(LED2ON){
                 Toast.makeText(this, "LED 2 activée", Toast.LENGTH_LONG).show()
-            else
+                characteristicLedUUID?.value=(byteArrayOf(0x02))
+                bluetoothGatt?.writeCharacteristic(characteristicLedUUID)}
+            else{
                 Toast.makeText(this, "LED 2 éteinte", Toast.LENGTH_LONG).show()
+                characteristicLedUUID?.value=(byteArrayOf(0x00))
+                bluetoothGatt?.writeCharacteristic(characteristicLedUUID)}
         }
 
         binding.led3.setOnClickListener {
             updateCount()
             LED3ON = !LED3ON
             turnOnLED(3)
-            if(LED3ON)
+            if(LED3ON){
                 Toast.makeText(this, "LED 3 activée", Toast.LENGTH_LONG).show()
-            else
+            characteristicLedUUID?.value=(byteArrayOf(0x03))
+            bluetoothGatt?.writeCharacteristic(characteristicLedUUID)
+            }
+            else{
                 Toast.makeText(this, "LED 3 éteinte", Toast.LENGTH_LONG).show()
+                characteristicLedUUID?.value=(byteArrayOf(0x00))
+                bluetoothGatt?.writeCharacteristic(characteristicLedUUID)}
+            }
         }
-    }
 
     private fun turnOnLED(ledNumber: Int) {
+
         val imageView = when (ledNumber) {
             1 -> binding.led1
             2 -> binding.led2

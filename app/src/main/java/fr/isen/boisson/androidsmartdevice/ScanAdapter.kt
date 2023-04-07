@@ -1,5 +1,6 @@
 package fr.isen.boisson.androidsmartdevice
 
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.le.ScanResult
 import android.view.LayoutInflater
@@ -18,11 +19,14 @@ class ScanAdapter(var devices: ArrayList<ScanResult>, var onDeviceClickListener:
     class ViewHolder(binding: ScanCellBinding) : RecyclerView.ViewHolder(binding.root) {
         val deviceName = binding.deviceName
         val rssi = binding.RSSI
+        val name = binding.name
     }
 
+    @SuppressLint("MissingPermission")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.deviceName.text = devices[position].device.address
         holder.rssi.text = devices[position].rssi.toString()
+        holder.name.text = devices[position].device.name
 
         holder.itemView.setOnClickListener {
             onDeviceClickListener(devices[position].device)
