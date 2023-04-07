@@ -1,0 +1,34 @@
+// Récupère le périphérique Bluetooth correspondant à la carte électronique
+        /*val bluetoothDevice = bluetoothAdapter.getRemoteDevice("00:11:22:33:44:55") // Adresse MAC de la carte électronique
+        if (bluetoothDevice == null) {
+            Log.e(TAG, "Périphérique Bluetooth non trouvé")
+            return
+        }
+
+        // Connexion à la carte électronique
+        bluetoothGatt = bluetoothDevice.connectGatt(context, false, object : BluetoothGattCallback() {
+            override fun onConnectionStateChange(gatt: BluetoothGatt?, status: Int, newState: Int) {
+                if (newState == BluetoothProfile.STATE_CONNECTED) {
+                    // Découvre les services et les caractéristiques de la carte électronique
+                    gatt?.discoverServices()
+                }
+            }
+
+            override fun onServicesDiscovered(gatt: BluetoothGatt?, status: Int) {
+                if (status == BluetoothGatt.GATT_SUCCESS) {
+                    // Récupère la caractéristique LED
+                    val ledCharacteristic = gatt?.getService(UUID_LED_SERVICE)?.getCharacteristic(UUID_LED_CHARACTERISTIC)
+                    if (ledCharacteristic == null) {
+                        Log.e(TAG, "Caractéristique LED non trouvée")
+                        return
+                    }
+
+                    // Allume la LED
+                    val data = byteArrayOf(0x01) // Données à envoyer pour allumer la LED
+                    ledCharacteristic.value = data
+                    gatt?.writeCharacteristic(ledCharacteristic)
+                } else {
+                    Log.e(TAG, "Erreur lors de la découverte des services de la carte électronique")
+                }
+            }
+        })*/
